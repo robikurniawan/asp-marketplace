@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — Admin | AspMarketplace</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="d-flex" style="min-height: 100vh;">
+        <nav class="bg-dark text-white d-flex flex-column p-3" style="width: 240px; min-height: 100vh;">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="text-white text-decoration-none mb-4">
+                <span class="fw-bold fs-5">AspMarketplace</span>
+                <span class="badge bg-secondary ms-1">Admin</span>
+            </a>
+            <ul class="nav nav-pills flex-column gap-1">
+                <li class="nav-item">
+                    <a class="nav-link text-white @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")"
+                       asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                        Dashboard
+                    </a>
+                </li>
+            </ul>
+            <div class="mt-auto pt-3 border-top border-secondary">
+                <small class="text-secondary d-block mb-2">@User.Identity?.Name</small>
+                <form asp-area="Auth" asp-controller="Account" asp-action="Logout" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-secondary btn-sm w-100">Keluar</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="flex-grow-1 p-4">
+            @if (TempData["SuccessMessage"] is string success)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @success
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] is string error)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @error
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

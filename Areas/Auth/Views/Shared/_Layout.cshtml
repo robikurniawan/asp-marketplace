@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — AspMarketplace</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light">
+    <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="w-100" style="max-width: 420px;">
+            <div class="text-center mb-4">
+                <a asp-area="Public" asp-controller="Home" asp-action="Index" class="text-decoration-none">
+                    <h2 class="fw-bold text-primary">AspMarketplace</h2>
+                </a>
+            </div>
+
+            @if (TempData["SuccessMessage"] is string success)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @success
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] is string error)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @error
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

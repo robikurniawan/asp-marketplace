@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Beranda";
+}
+
+<div class="py-5 text-center">
+    <h1 class="display-5 fw-bold">Selamat datang di AspMarketplace</h1>
+    <p class="lead text-muted">Platform marketplace modern berbasis ASP.NET Core 10 MVC.</p>
+    @if (User.Identity?.IsAuthenticated != true)
+    {
+        <a asp-area="Auth" asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg">Masuk Sekarang</a>
+    }
+</div>
