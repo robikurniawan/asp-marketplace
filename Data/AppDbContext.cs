@@ -7,6 +7,8 @@ namespace AspMarketplace.Web.Data;
 public class AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserService currentUser)
     : DbContext(options)
 {
+    public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

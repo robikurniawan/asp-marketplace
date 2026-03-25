@@ -21,6 +21,15 @@
                         Dashboard
                     </a>
                 </li>
+                <li class="nav-item">
+                    <small class="text-secondary px-3 d-block mt-3 mb-1" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.05em">Katalog</small>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white @(ViewContext.RouteData.Values["controller"]?.ToString() == "ProductCategory" ? "active" : "")"
+                       asp-area="Admin" asp-controller="ProductCategory" asp-action="Index">
+                        Kategori Produk
+                    </a>
+                </li>
             </ul>
             <div class="mt-auto pt-3 border-top border-secondary">
                 <small class="text-secondary d-block mb-2">@User.Identity?.Name</small>
@@ -50,6 +59,7 @@
         </div>
     </div>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

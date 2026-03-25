@@ -47,6 +47,8 @@ public static class ServiceExtensions
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+        services.AddScoped<IProductCategoryService, ProductCategoryService>();
+
         return services;
     }
 
